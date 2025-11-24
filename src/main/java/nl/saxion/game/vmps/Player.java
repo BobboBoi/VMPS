@@ -29,14 +29,14 @@ public class Player extends Object2D {
     }
 
     public void draw(float delta) {
-        GameApp.drawTexture("brick",x,y,width,height);
+        GameApp.drawTexture("brick",scene.center.x, scene.center.y, width, height);
     }
 
     public void input(float delta) {
         Vector2 input = new Vector2(InputAction.getInputAxis(Input.Keys.A, Input.Keys.D), InputAction.getInputAxis(Input.Keys.S, Input.Keys.W));
         Vector2 normalizedInput = input.nor();
 
-        System.out.println(input.x + " " + input.y);
+//        System.out.println(input.x + " " + input.y);
 
         this.x += (float) (normalizedInput.x * speed * delta);
         this.y += (float) (normalizedInput.y * speed * delta);

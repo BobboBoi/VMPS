@@ -2,9 +2,9 @@ package nl.saxion.game.vmps.screens;
 
 import com.badlogic.gdx.Input;
 import nl.saxion.gameapp.GameApp;
-import nl.saxion.game.vmps.classes.Level;
+import nl.saxion.game.vmps.classes.Scene;
 
-public class MainMenuScreen extends Level {
+public class MainMenuScreen extends Scene {
     public MainMenuScreen() {
         super(1280, 720);
     }
