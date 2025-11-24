@@ -8,12 +8,12 @@ import nl.saxion.game.vmps.classes.Object2D;
 import nl.saxion.gameapp.GameApp;
 
 public class Player extends Object2D {
-    static final Vector2 size = new Vector2(32,32);
+    static final float size = 32;
 
-    public double speed = 50.;
+    public double speed = 200.;
 
     public Player(Level level, float x, float y) {
-        super(level, x, y, size.x, size.y);
+        super(level, x, y, size, size);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class Player extends Object2D {
     }
 
     public void draw(float delta) {
-        GameApp.drawTexture("brick",scene.center.x, scene.center.y, width, height);
+        GameApp.drawTexture("brick",scene.center.x - size / 2, scene.center.y - size / 2, width, height);
     }
 
     public void input(float delta) {

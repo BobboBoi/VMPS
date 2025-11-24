@@ -11,6 +11,6 @@ public class Main {
         GameApp.addScreen("TestScreen", new TestScreen());
 
         // Start game loop and show main menu screen
-        GameApp.start("Your Game Name", 800, 450, 60, false, "MainMenuScreen");
+        GameApp.start("VMPS", 1280, 720, 60, false, "MainMenuScreen");
     }
 }
