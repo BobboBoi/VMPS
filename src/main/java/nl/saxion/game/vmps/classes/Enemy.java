@@ -29,7 +29,6 @@ public abstract class Enemy extends Object2D {
         Vector2 c = new Vector2(level.player.getX(), level.player.getY());
         Vector2 d = p.sub(c).nor();
 
-        System.out.println("Dir: "+d.x+" "+d.y);
         globalX -= d.x * delta * speed;
         globalY -= d.y * delta * speed;
 
