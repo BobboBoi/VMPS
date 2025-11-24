@@ -16,6 +16,11 @@ public class Kerbe extends Enemy {
     }
 
     @Override
+    public void deinit() {
+
+    }
+
+    @Override
     public void render(float delta) {
         super.render(delta);
         GameApp.drawTexture("kerbe", x, y, width, height);

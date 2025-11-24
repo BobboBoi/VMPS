@@ -37,14 +37,19 @@ public abstract class Scene extends ScalableGameScreen {
 
         // Render all level objects
         GameApp.startSpriteRendering();
-        for (Object2D o : objects) {
+        for (Object2D o : objects)
             o.render(delta);
-        }
+
         GameApp.endSpriteRendering();
     }
 
+    @Override
+    public void hide() {
+        for (Object2D o : objects)
+            o.deinit();
+    }
+
     public abstract void show();
-    public abstract void hide();
 
     /**
      * Called on the first frame.

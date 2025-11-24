@@ -37,6 +37,7 @@ public abstract class Object2D extends GameObject {
     }
 
     public abstract void init();
+    public abstract void deinit();
     public abstract void render(float delta);
 }
 
