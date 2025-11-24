@@ -9,8 +9,10 @@ import nl.saxion.gameapp.GameApp;
 
 public class Player extends Object2D {
     static final float size = 32;
-
-    public double speed = 200.;
+    public float speed = 200f;
+    public float hp = 100f;
+    public int xp = 0;
+    public int lvl = 1;
 
     public Player(Level level, float x, float y) {
         super(level, x, y, size, size);
@@ -20,6 +22,14 @@ public class Player extends Object2D {
     public void init() {
         if (!GameApp.hasTexture("brick"))
             GameApp.addTexture("brick","textures/bricktherat.png");
+
+        addCircleHitbox(0,0,0.5f);
+    }
+
+    @Override
+    public void deinit() {
+        if (GameApp.hasTexture("brick"))
+            GameApp.disposeTexture("brick");
     }
 
     @Override
@@ -33,12 +43,16 @@ public class Player extends Object2D {
     }
 
     public void input(float delta) {
+        Level level = (Level) scene;
         Vector2 input = new Vector2(InputAction.getInputAxis(Input.Keys.A, Input.Keys.D), InputAction.getInputAxis(Input.Keys.S, Input.Keys.W));
         Vector2 normalizedInput = input.nor();
 
-//        System.out.println(input.x + " " + input.y);
+        // moveBy(normalizedInput.x * speed * delta, normalizedInput.y * speed * delta);
+        level.cameraX += normalizedInput.x * speed * delta;
+        level.cameraY += normalizedInput.y * speed * delta;
+    }
 
-        this.x += (float) (normalizedInput.x * speed * delta);
-        this.y += (float) (normalizedInput.y * speed * delta);
+    public void hit(float dmg) {
+        hp -= dmg;
     }
 }
