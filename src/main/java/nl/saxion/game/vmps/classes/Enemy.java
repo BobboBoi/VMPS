@@ -1,11 +1,12 @@
 package nl.saxion.game.vmps.classes;
 
 import com.badlogic.gdx.math.Vector2;
+import nl.saxion.gameapp.GameApp;
 
 public abstract class Enemy extends Object2D {
     public float size = 32f;
     public float speed = 50f;
-    public float health = 10f;
+    public float hp = 10f;
     public float dmg = 3f;
 
     public float modifier = 1f;
@@ -44,5 +45,13 @@ public abstract class Enemy extends Object2D {
 
         if (this.collidesWith(level.player))
             level.player.hit(dmg * delta);
+    }
+
+    public void hit(float dmg) {
+        hp -= dmg;
+
+        // Die when hp hits below 0
+        if (hp <= 0)
+            kill();
     }
 }

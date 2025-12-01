@@ -2,10 +2,11 @@ package nl.saxion.game.vmps;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
-import nl.saxion.game.vmps.classes.InputAction;
-import nl.saxion.game.vmps.classes.Level;
-import nl.saxion.game.vmps.classes.Object2D;
+import nl.saxion.game.vmps.classes.*;
+import nl.saxion.game.vmps.weapons.BobboBlade;
 import nl.saxion.gameapp.GameApp;
+
+import java.util.ArrayList;
 
 public class Player extends Object2D {
     static final float size = 32;
@@ -13,6 +14,15 @@ public class Player extends Object2D {
     public float hp = 100f;
     public int xp = 0;
     public int lvl = 1;
+
+    public float dmg = 1f;
+    public float weaponSpeed = 1f;
+    public float projectileSpeed = 1f;
+    public float projectileSize = 1f;
+    public float projectileDuration = 1f;
+
+    public ArrayList<Weapon> weapons;
+    public ArrayList<PlayerProjectile> projectiles;
 
     public Player(Level level, float x, float y) {
         super(level, x, y, size, size);
@@ -23,6 +33,10 @@ public class Player extends Object2D {
         if (!GameApp.hasTexture("brick"))
             GameApp.addTexture("brick","textures/bricktherat.png");
 
+        weapons = new ArrayList<>();
+        projectiles = new ArrayList<>();
+
+        weapons.add(new BobboBlade(this)); // starter weapon
         addCircleHitbox(0,0,0.5f);
     }
 
@@ -36,6 +50,9 @@ public class Player extends Object2D {
     public void render(float delta) {
         input(delta);
         draw(delta);
+
+        for (Weapon weapon : weapons)
+            weapon.render(delta);
     }
 
     public void draw(float delta) {

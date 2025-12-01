@@ -37,9 +37,8 @@ public abstract class Scene extends ScalableGameScreen {
 
         // Render all level objects
         GameApp.startSpriteRendering();
-        for (Object2D o : objects)
-            o.render(delta);
-
+        for (int i = 0; i < objects.size(); i++)
+            objects.get(i).render(delta);
         GameApp.endSpriteRendering();
     }
 
