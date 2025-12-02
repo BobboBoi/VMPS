@@ -1,7 +1,9 @@
 package nl.saxion.game.vmps.classes;
 
 import com.badlogic.gdx.math.Vector2;
+import nl.saxion.game.vmps.classes.collision.FixedPolygonHitbox;
 import nl.saxion.gameapp.gameobject.RotatableGameObject;
+import nl.saxion.gameapp.gameobject.hitbox.PolygonHitbox;
 
 public abstract class Object2D extends RotatableGameObject {
     /** The Scene that this object is in. **/
@@ -42,6 +44,30 @@ public abstract class Object2D extends RotatableGameObject {
     public abstract void deinit();
     public abstract void render(float delta);
 
+    @Override
+    public void setRotation(float rotation) {
+        for (int i = 0; i < hitboxes.size(); i++) {
+            if(hitboxes.get(i) instanceof PolygonHitbox)
+                ((PolygonHitbox) hitboxes.get(i)).setRotation(rotation);
+        }
+
+        this.rotation = rotation;
+    }
+
+    @Override
+    public void addHitbox(float relOffsetX, float relOffsetY, float relWidth, float relHeight) {
+        float[] vertices = new float[]{
+                relOffsetX, relOffsetY,
+                relOffsetX + relWidth, relOffsetY,
+                relOffsetX + relWidth, relOffsetY + relHeight,
+                relOffsetX, relOffsetY + relHeight
+        };
+
+        // Use FixedPolygonHitbox patch for PolygonHitbox as it fixes the fact that the origin of the hit box is never modified
+        // Common Saxion L
+        hitboxes.add(new FixedPolygonHitbox(this, vertices));
+    }
+
 
     /**
      * Remove object from the scene objects list
@@ -54,6 +80,10 @@ public abstract class Object2D extends RotatableGameObject {
         scene.objects.remove(this);
     }
 
+    /**
+     * Check if object is in process of being freed
+     * @return freeing
+     */
     public boolean isFreeing(){
         return freeing;
     }

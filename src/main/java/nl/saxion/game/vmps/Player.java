@@ -21,6 +21,8 @@ public class Player extends Object2D {
     public float projectileSize = 1f;
     public float projectileDuration = 1f;
 
+    public float facing = 0f;
+
     public ArrayList<Weapon> weapons;
     public ArrayList<PlayerProjectile> projectiles;
 
@@ -63,6 +65,10 @@ public class Player extends Object2D {
         Level level = (Level) scene;
         Vector2 input = new Vector2(InputAction.getInputAxis(Input.Keys.A, Input.Keys.D), InputAction.getInputAxis(Input.Keys.S, Input.Keys.W));
         Vector2 normalizedInput = input.nor();
+
+        // Set facing direction used by some weapons
+        if (normalizedInput.x != 0f || normalizedInput.y != 0f)
+            facing = (float) Math.toDegrees(Math.atan2(normalizedInput.y, normalizedInput.x));
 
         // moveBy(normalizedInput.x * speed * delta, normalizedInput.y * speed * delta);
         level.cameraX += normalizedInput.x * speed * delta;

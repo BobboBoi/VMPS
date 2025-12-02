@@ -7,7 +7,7 @@ public abstract class PlayerProjectile extends Projectile {
     public Weapon weapon = null;
 
     public PlayerProjectile(Player player, Weapon weapon, float x,  float y, float width, float height) {
-        super(player.scene, player.getX(), player.getY(), width, height);
+        super(player.scene, x, y, width, height);
         this.player = player;
         this.weapon = weapon;
 
