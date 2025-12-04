@@ -27,7 +27,7 @@ public class TestLevel extends Level {
 
     @Override
     public void ready() {
-        System.out.println("Ready");
+
     }
 
     @Override

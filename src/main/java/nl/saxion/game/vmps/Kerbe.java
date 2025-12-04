@@ -1,12 +1,13 @@
 package nl.saxion.game.vmps;
 
 import nl.saxion.game.vmps.classes.Enemy;
+import nl.saxion.game.vmps.classes.EnemyManager;
 import nl.saxion.game.vmps.classes.Level;
 import nl.saxion.gameapp.GameApp;
 
 public class Kerbe extends Enemy {
-    public Kerbe(Level level, float x, float y) {
-        super(level, x, y);
+    public Kerbe(EnemyManager enemyManager, Level level, float x, float y) {
+        super(enemyManager, level, x, y);
     }
 
     @Override
