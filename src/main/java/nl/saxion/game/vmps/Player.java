@@ -1,6 +1,7 @@
 package nl.saxion.game.vmps;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import nl.saxion.game.vmps.classes.*;
 import nl.saxion.game.vmps.weapons.BobboBlade;
@@ -18,7 +19,7 @@ public class Player extends Object2D {
     public float dmg = 1f;
     public float weaponSpeed = 1f;
     public float projectileSpeed = 1f;
-    public float projectileSize = 1f;
+    public float projectileSize = 1.5f;
     public float projectileDuration = 1f;
 
     public float facing = 0f;
@@ -33,7 +34,7 @@ public class Player extends Object2D {
     @Override
     public void init() {
         if (!GameApp.hasTexture("brick"))
-            GameApp.addTexture("brick","textures/bricktherat.png");
+            GameApp.addTexture("brick", "textures/bricktherat.png", Texture.TextureFilter.Nearest);
 
         weapons = new ArrayList<>();
         projectiles = new ArrayList<>();
