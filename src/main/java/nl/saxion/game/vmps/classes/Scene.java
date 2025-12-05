@@ -13,6 +13,9 @@ public abstract class Scene extends ScalableGameScreen {
     public final Vector2 size;
     public final Vector2 center;
 
+    public float cameraX = 0;
+    public float cameraY = 0;
+
     public ArrayList<Object2D> objects = new ArrayList<Object2D>();
 
     public Scene(int worldWidth, int worldHeight) {

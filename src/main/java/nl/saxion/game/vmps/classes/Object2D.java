@@ -2,6 +2,7 @@ package nl.saxion.game.vmps.classes;
 
 import com.badlogic.gdx.math.Vector2;
 import nl.saxion.game.vmps.classes.collision.FixedPolygonHitbox;
+import nl.saxion.gameapp.GameApp;
 import nl.saxion.gameapp.gameobject.RotatableGameObject;
 import nl.saxion.gameapp.gameobject.hitbox.PolygonHitbox;
 
@@ -86,6 +87,16 @@ public abstract class Object2D extends RotatableGameObject {
      */
     public boolean isFreeing(){
         return freeing;
+    }
+
+    public boolean isVisible(){
+        return isVisible(this.x, this.y, this.width, this.height);
+    }
+    public boolean isVisible(float x, float y){
+        return isVisible(x, y, this.width, this.height);
+    }
+    public boolean isVisible(float x, float y, float width, float height){
+        return x - width / 2 < GameApp.getWorldWidth() || x + width / 2 > 0 || y - height / 2 < GameApp.getWorldHeight() || y + width / 2 > 0;
     }
 }
 

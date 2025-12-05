@@ -50,7 +50,6 @@ public class BladeProjectile extends PlayerProjectile {
             if (obj instanceof Enemy && collidesWith(obj)) {
                 ((Enemy) obj).hit(getDmg());
                 ignore.add(obj);
-                System.out.println("Hit: "+obj);
 
                 // Move back one index to compensate for moved indexes
                 if (obj.isFreeing())

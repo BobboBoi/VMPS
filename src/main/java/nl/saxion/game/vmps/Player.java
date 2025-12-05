@@ -15,12 +15,14 @@ public class Player extends Object2D {
     public float hp = 100f;
     public int xp = 0;
     public int lvl = 1;
+    public int nextLvl = 10;
 
     public float dmg = 1f;
     public float weaponSpeed = 1f;
     public float projectileSpeed = 1f;
     public float projectileSize = 1.5f;
     public float projectileDuration = 1f;
+    public float collectionRange = 50f;
 
     public float facing = 0f;
 
@@ -74,6 +76,23 @@ public class Player extends Object2D {
         // moveBy(normalizedInput.x * speed * delta, normalizedInput.y * speed * delta);
         level.cameraX += normalizedInput.x * speed * delta;
         level.cameraY += normalizedInput.y * speed * delta;
+    }
+
+    public void levelUp() {
+        if(this.xp < nextLvl) return;
+
+        this.lvl++;
+        this.xp -= this.nextLvl;
+        //noinspection PointlessArithmeticExpression NO INTELLIJ THIS IS NOT WORTH A WARNING STFU
+        this.nextLvl = this.nextLvl * (this.lvl + 1 / 4);
+
+        // TODO item upgrade menu
+    }
+
+    public void setXp(int xp) {
+        this.xp = xp;
+        while(this.xp >= nextLvl)
+            levelUp();
     }
 
     public void hit(float dmg) {

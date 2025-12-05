@@ -7,9 +7,6 @@ public abstract class Level extends Scene {
     public Player player = null;
     public EnemyManager enemies = null;
 
-    public float cameraX = 0;
-    public float cameraY = 0;
-
     public Level(int worldWidth, int worldHeight) {
         super(worldWidth, worldHeight);
     }

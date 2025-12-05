@@ -35,10 +35,11 @@ public class TestLevel extends Level {
         enemies.spawn();
         super.render(delta);
 
-        // Placeholder
+        // Placeholder UI
         GameApp.startSpriteRendering();
-        GameApp.drawText("ui", "Hp: "+player.hp, 0f, getWorldHeight() - 30,"white");
-        GameApp.drawText("ui", "Xp: "+player.xp, 0f, getWorldHeight() - 70,"white");
+        GameApp.drawText("ui", "Lvl: "+player.lvl, 0f, getWorldHeight() - 30,"white");
+        GameApp.drawText("ui", "Hp: "+player.hp, 0f, getWorldHeight() - 70,"white");
+        GameApp.drawText("ui", "Xp: "+player.xp+"/"+player.nextLvl, 0f, getWorldHeight() - 110,"white");
         GameApp.endSpriteRendering();
     }
 

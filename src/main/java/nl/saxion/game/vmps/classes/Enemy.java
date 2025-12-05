@@ -1,6 +1,7 @@
 package nl.saxion.game.vmps.classes;
 
 import com.badlogic.gdx.math.Vector2;
+import nl.saxion.game.vmps.Gem;
 import nl.saxion.gameapp.GameApp;
 
 public abstract class Enemy extends Object2D {
@@ -67,8 +68,10 @@ public abstract class Enemy extends Object2D {
         hp -= dmg;
 
         // Die when hp hits below 0
-        if (hp <= 0)
+        if (hp <= 0) {
+            Gem drop = new Gem(enemyManager.level, globalX, globalY, 16);
             kill();
+        }
     }
 
     @Override
